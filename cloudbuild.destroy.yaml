@@ -46,8 +46,11 @@ steps:
         env=${dir%*/}
         env=${env#*/}
         echo ""
+        echo "*************** DELETING FW-RULES ***************"
+        gcloud compute firewall-rules list --filter="name~${env}-[0-9a-z]{10,}" --format="value(name)" | xargs -I {} gcloud compute firewall-rules delete {} -q
+        echo ""
         echo "*************** TERRAFORM INIT ******************"
-        echo "******* At environment: ${env} ********"
+        echo "******* At environment: ${env} *****************"
         echo "*************************************************"
         terraform destroy -auto-approve
         cd ../../
