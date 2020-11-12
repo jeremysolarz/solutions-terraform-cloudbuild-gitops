@@ -50,5 +50,6 @@ steps:
         echo "******* At environment: ${env} ********"
         echo "*************************************************"
         terraform destroy -auto-approve
+        cd ../../
       done
 # [END tf-destroy]      
